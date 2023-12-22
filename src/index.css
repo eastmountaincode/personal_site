@@ -12,16 +12,28 @@ p, div {
   padding: 0; /* Removes default padding */
 }
 
-/* You can add other elements here that you want to reset */
-/* For example, for lists: */
-ul, ol, li {
-  margin: 0;
-  padding: 0;
-  list-style: none; /* Removes default list styling */
-}
-
 /* For headings: */
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
 }
+
+.sidebar-link {
+  position: relative;
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  margin-left: 20px;
+}
+
+.sidebar-link-header {
+  position: relative;
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.paragraphSection {
+  margin-bottom: 20px;
+  text-align: left
+};

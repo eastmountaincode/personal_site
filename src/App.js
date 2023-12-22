@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Sidebar from './Sidebar';
-import MainContent from './MainContent';
 import WhatsGoingOn from './WhatsGoingOn';
+import FreeLittleLibraryWriting from './projects/FreeLittleLibraryWriting';
+import BodyLangCollageWriting from './projects/BodyLangCollageWriting'
+
+import DefaultHomeContent from './DefaultHomeContent'
 
 function App() {
-  const [mainContentState, setMainContentState] = useState("defaultContent");
-
-  const handleSidebarChange = (newContent) => {
-    setMainContentState(newContent);
-  };
-
   return (
-    <div className="App" style={{ display: "flex", height: "100vh" }}>
-        <div style={{ width: "20%" }}> {/* Adjusted for Sidebar */}
-          <Sidebar selectSidebarOption={handleSidebarChange} />
-        </div>
-        <div style={{ width: "60%" }}> {/* Adjusted for MainContent */}
-          <MainContent mainContentProp={mainContentState} />
-        </div>
-        <div style={{ width: "20%" }}> {/* Adjusted for WhatsGoingOn */}
-          <WhatsGoingOn />
-        </div>
-    </div>
+    <Router>
+      <div className="App" style={{ display: "flex", height: "100vh" }}>
+          {/* SIDEBAR */}
+          <div style={{ width: "30%" }}>
+            <Sidebar />
+          </div>
+
+          {/* MAIN CONTENT */}
+          <div style={{ width: "55%" }}>
+            <Routes>
+              <Route path="/" element={<DefaultHomeContent />} />
+              <Route path="/projects/virtualLittleFreeLibrary" element={<FreeLittleLibraryWriting/>} />
+              <Route path="/projects/bodyLanguageCollaborativeCollage" element={<BodyLangCollageWriting />} />
+            </Routes>
+          </div>
+
+          {/* WHAT'S GOING ON? */}
+          <div style={{ width: "15%" }}>
+            <WhatsGoingOn />
+          </div>
+      </div>
+    </Router>
   );
 }
 

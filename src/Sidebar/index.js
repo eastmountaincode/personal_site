@@ -1,17 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import CollapsibleSidebarItem from '../CollapsibleSidebarItem';
 
 function Sidebar({ selectSidebarOption }) {
+  let navigate = useNavigate();
+
+  const handleSidebarItemClick = (itemRoute) => {
+    navigate(`${itemRoute}`);
+  };
+
   return (
-    <div className="sidebar" style={{textAlign: "left"}}>
+    <div className="sidebar" style={{ textAlign: "left" }}>
       <div className='name_header'>
-        <span>Andrew Boylan</span>
+      <p className="sidebar-link-header" onClick={() => handleSidebarItemClick('/')}>Andrew Boylan</p>
       </div>
       <div className='sidebar_elements'>
         <CollapsibleSidebarItem label="Projects">
-          <p>hello</p>
+          <div style={{display: "flex"}}>
+            <span>➮</span>
+            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/projects/virtualLittleFreeLibrary')}>Virtual Little Free Library</p>
+          </div>
+          <div style={{display: "flex"}}>
+            <span>➮</span>
+            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/projects/bodyLanguageCollaborativeCollage')}>Body Language: A Collaborative Collage</p>
+          </div>
         </CollapsibleSidebarItem>
-
         <CollapsibleSidebarItem label="Resources & Tools">
           <p>tool</p>
         </CollapsibleSidebarItem>
