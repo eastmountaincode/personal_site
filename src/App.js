@@ -18,7 +18,7 @@ function App() {
           </div>
 
           {/* MAIN CONTENT */}
-          <div style={{ width: "55%" }}>
+          <div style={{ width: "50%" }}>
             <Routes>
               <Route path="/" element={<DefaultHomeContent />} />
               <Route path="/projects/virtualLittleFreeLibrary" element={<FreeLittleLibraryWriting/>} />
@@ -27,7 +27,7 @@ function App() {
           </div>
 
           {/* WHAT'S GOING ON? */}
-          <div style={{ width: "15%" }}>
+          <div style={{ width: "20%" }}>
             <WhatsGoingOn />
           </div>
       </div>
