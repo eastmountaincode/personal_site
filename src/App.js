@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import WhatsGoingOn from './WhatsGoingOn';
 import FreeLittleLibraryWriting from './projects/FreeLittleLibraryWriting';
 import BodyLangCollageWriting from './projects/BodyLangCollageWriting'
+import FileDepolarizer from './resources_tools/FileDepolarizer';
 
 import DefaultHomeContent from './DefaultHomeContent'
 
@@ -23,6 +24,7 @@ function App() {
               <Route path="/" element={<DefaultHomeContent />} />
               <Route path="/projects/virtualLittleFreeLibrary" element={<FreeLittleLibraryWriting/>} />
               <Route path="/projects/bodyLanguageCollaborativeCollage" element={<BodyLangCollageWriting />} />
+              <Route path="/resources_tools/fileDepolarizer" element={<FileDepolarizer />} />
             </Routes>
           </div>
 

@@ -12,8 +12,9 @@ const imageStyle = {
 };
 
 const captionStyle = {
-    fontSize: '13px', 
+    fontSize: '14px', 
     textAlign: 'center', 
+    marginTop: '5px'
 };
 
 function BodyLangCollageWriting() {
@@ -24,6 +25,7 @@ function BodyLangCollageWriting() {
                 <p>
                     Utilizing web sockets to enable real-time interaction, <i>Body Language</i> is a collaborative collage platform for virtual rendezvous, digital puppetry, and image-oriented anonymous semantic cooperation.
                 </p>
+                <p style={{marginTop: '20px'}}>Live at <a href="https://freewaterhouse.com/collage">https://freewaterhouse.com/collage</a></p>
             </div>
             <figure>
                 <img src={FullPageCollage} alt="Full page collage" style={imageStyle} />
