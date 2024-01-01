@@ -7,6 +7,8 @@ function FileDepolarizer() {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [terminalOutput, setTerminalOutput] = useState([]);
 
+    const MAX_FILE_SIZE = 300 * 1024 * 1024; // 300 MB in bytes
+
     ////////////// DRAG AND DROP //////////////
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -17,9 +19,9 @@ function FileDepolarizer() {
         }
     }, []);
 
-    const clearSelection = (event) => {
+    const clearSelectionWithXButton = (event) => {
         event.stopPropagation(); // Prevent the event from propagating to the parent
-        // without stopping the event propagation, clicking the x would not only trigger clearSelection
+        // without stopping the event propagation, clicking the x would not only trigger clearSelectionWithXButton
         // but also the click handler that is brough in by ...getRootProps()
         setSelectedFile(null);
         setUploadProgress(0); // Reset progress on clearing selection
@@ -53,20 +55,27 @@ function FileDepolarizer() {
     };
 
     const handleUpload = () => {
+        setTerminalOutput([])
+        setSelectedFile(null);
+        setUploadProgress(0);
+
+        if (selectedFile.size > MAX_FILE_SIZE) {
+            // If file size exceeds the limit, output an error and return
+            setTerminalOutput(oldOutput => [...oldOutput, `Error: File too large. Maximum size is 300 MB.`]);
+            return;
+        }
         const formData = new FormData();
         formData.append('file', selectedFile);
 
         const url = 'http://localhost:5001/upload';
 
         setTerminalOutput(oldOutput => [...oldOutput, `Uploading file: ${selectedFile.name}`])
-
-        // Initialize the progress bar with 0% completion
         setTerminalOutput(oldOutput => [...oldOutput, renderProgressBar(0)]);
 
         axios.post(url, formData, {
             onUploadProgress: progressEvent => {
                 const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                setUploadProgress(percentCompleted); 
+                setUploadProgress(percentCompleted);
                 setTerminalOutput(oldOutput => {
                     const newOutput = [...oldOutput];
                     newOutput[newOutput.length - 1] = renderProgressBar(percentCompleted);
@@ -78,7 +87,17 @@ function FileDepolarizer() {
                 setTerminalOutput(oldOutput => [...oldOutput, `Upload complete: ${response.data.message}`]);
             })
             .catch(error => {
-                setTerminalOutput(oldOutput => [...oldOutput, `Failed to upload file: ${error.message}`]);
+                let errorMessage = "Failed to upload file: ";
+
+                // Check if the response is available and has data
+                if (error.response && error.response.data && error.response.data.error) {
+                    errorMessage += error.response.data.error;
+                } else if (error.message) {
+                    // Fallback to a more generic error message
+                    errorMessage += `${error.message}`;
+                }
+
+                setTerminalOutput(oldOutput => [...oldOutput, errorMessage]);
             });
     };
 
@@ -92,7 +111,7 @@ function FileDepolarizer() {
                     selectedFile ? (
                         <div>
                             <span>{selectedFile.name}</span>
-                            <button onClick={clearSelection} style={clearButtonStyle}>X</button>
+                            <button onClick={clearSelectionWithXButton} style={clearButtonStyle}>X</button>
                             <button onClick={handleUpload}>Upload</button>
                         </div>
                     ) : (
