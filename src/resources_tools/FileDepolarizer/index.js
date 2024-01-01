@@ -85,6 +85,18 @@ function FileDepolarizer() {
         })
             .then(response => {
                 setTerminalOutput(oldOutput => [...oldOutput, `Upload complete: ${response.data.message}`]);
+
+                // Convert hex to binary 
+                const hexToBinary = hexString => hexString.split('').map(hexDigit =>
+                    parseInt(hexDigit, 16).toString(2).padStart(4, '0')
+                ).join('');
+
+                const binaryDataHead = hexToBinary(response.data.data_head);
+                const binaryDataHeadFlipped = hexToBinary(response.data.data_head_flipped);
+
+                setTerminalOutput(oldOutput => [...oldOutput, `Depolarizing...`]);
+                setTerminalOutput(oldOutput => [...oldOutput, `First 20 bytes in binary: ${binaryDataHead}`]);
+                setTerminalOutput(oldOutput => [...oldOutput, `First 20 bytes after processing in binary: ${binaryDataHeadFlipped}`]);
             })
             .catch(error => {
                 let errorMessage = "Failed to upload file: ";
