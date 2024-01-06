@@ -1,13 +1,65 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+import { useEffect } from 'react';
+import { io } from 'socket.io-client';
+let socket;
 
 function FileDepolarizer() {
+    const defaultTerminalOutput = [
+    'Depolarizer Terminal v1.0.1',
+    '----------------------------------']
+
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(0);
-    const [terminalOutput, setTerminalOutput] = useState([]);
+    const [terminalOutput, setTerminalOutput] = useState(defaultTerminalOutput);
+    const [downloadUrl, setDownloadUrl] = useState(null);
+    const [depolarizedFileName, setDepolarizedFileName] = useState('');
+
 
     const MAX_FILE_SIZE = 300 * 1024 * 1024; // 300 MB in bytes
+
+    // Establish WebSocket and listeners
+    useEffect(() => {
+        socket = io('http://localhost:5001')
+
+        socket.on('processing_error', error => {
+            setTerminalOutput(oldOutput => [...oldOutput, `Processing Error: ${error.error}`]);
+        });
+    
+        socket.on('first_5_binary', data => {
+            setTerminalOutput(oldOutput => [...oldOutput, `Head: ${data.data}`]);
+        });
+
+        socket.on('reading_file', () => {
+            setTerminalOutput(oldOutput => [...oldOutput, "Reading file..."])
+        });
+
+        socket.on('initiating_depolarization', () => {
+            setTerminalOutput(oldOutput => [...oldOutput, `Initiating depolarization...`]);
+        });
+
+        socket.on('complete_message', () => {
+            setTerminalOutput(oldOutput => [...oldOutput, '~~~ DEPOLARIZATION COMPLETE ~~~']);
+        });
+
+        socket.on('flipping_bits_status', () => {
+            setTerminalOutput(oldOutput => [...oldOutput, "Flipping bits..."])
+        });
+
+        socket.on('file_ready', data => {
+            const downloadLink = data.download_url;
+            setDownloadUrl(downloadLink);
+            setTerminalOutput(oldOutput => [...oldOutput, `File is ready for download. It will remain available for 60 seconds.`]);
+
+            // Extract filename from URL
+            const urlParts = downloadLink.split('/');
+            const fileName = urlParts[urlParts.length - 1];
+            setDepolarizedFileName(fileName);
+        });
+
+        return () => socket.disconnect();
+    }, []);
 
     ////////////// DRAG AND DROP //////////////
 
@@ -55,7 +107,7 @@ function FileDepolarizer() {
     };
 
     const handleUpload = () => {
-        setTerminalOutput([])
+        setTerminalOutput(defaultTerminalOutput)
         setSelectedFile(null);
         setUploadProgress(0);
 
@@ -85,18 +137,8 @@ function FileDepolarizer() {
         })
             .then(response => {
                 setTerminalOutput(oldOutput => [...oldOutput, `Upload complete: ${response.data.message}`]);
-
-                // Convert hex to binary 
-                const hexToBinary = hexString => hexString.split('').map(hexDigit =>
-                    parseInt(hexDigit, 16).toString(2).padStart(4, '0')
-                ).join('');
-
-                const binaryDataHead = hexToBinary(response.data.data_head);
-                const binaryDataHeadFlipped = hexToBinary(response.data.data_head_flipped);
-
-                setTerminalOutput(oldOutput => [...oldOutput, `Depolarizing...`]);
-                setTerminalOutput(oldOutput => [...oldOutput, `First 20 bytes in binary: ${binaryDataHead}`]);
-                setTerminalOutput(oldOutput => [...oldOutput, `First 20 bytes after processing in binary: ${binaryDataHeadFlipped}`]);
+                const filename = selectedFile.name;
+                socket.emit('start_processing', { filename });
             })
             .catch(error => {
                 let errorMessage = "Failed to upload file: ";
@@ -109,6 +151,37 @@ function FileDepolarizer() {
                     errorMessage += `${error.message}`;
                 }
 
+                setTerminalOutput(oldOutput => [...oldOutput, errorMessage]);
+            });
+    };
+
+    const downloadFile = () => {
+        if (!downloadUrl) return;
+
+        axios.get(downloadUrl, { responseType: 'blob' })
+            .then(response => {
+                // Create a blob link to download
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', depolarizedFileName);
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode.removeChild(link);
+            })
+            .catch(error => {
+                let errorMessage = "Failed to download file: ";
+            
+                // Check if the error response exists and has a status code of 404
+                if (error.response && error.response.status === 404) {
+                    // Attempt to use the custom error message from the server
+                    errorMessage += error.response.data.error || "File not found or has expired. Refresh and try again.";
+                } else if (error.message) {
+                    errorMessage += `${error.message}`;
+                } else {
+                    errorMessage += "An unknown error occurred.";
+                }
+            
                 setTerminalOutput(oldOutput => [...oldOutput, errorMessage]);
             });
     };
@@ -133,6 +206,9 @@ function FileDepolarizer() {
             </div>
             <div style={terminalStyle}>
                 {renderTerminalOutput()}
+            </div>
+            <div style={{marginTop: "10px", textAlign: "left"}}>
+                <button onClick={downloadFile} disabled={!downloadUrl}>Download Depolarized File</button>
             </div>
         </div>
 
@@ -168,6 +244,10 @@ const terminalStyle = {
     fontFamily: 'monospace',
     marginTop: '10px',
     padding: '10px',
+    textAlign: 'left',
+
+    minWidth: '370px',
+    minHeight: '215px'
 };
 
 export default FileDepolarizer;

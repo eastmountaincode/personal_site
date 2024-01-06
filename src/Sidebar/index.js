@@ -19,11 +19,11 @@ function Sidebar({ selectSidebarOption }) {
         <CollapsibleSidebarItem label="Projects">
           <div style={{ display: "flex" }}>
             <span>➮</span>
-            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/projects/virtualLittleFreeLibrary')}>Virtual Little Free Library</p>
+            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/projects/bodyLanguageCollaborativeCollage')}>Body Language: A Collaborative Collage</p>
           </div>
           <div style={{ display: "flex" }}>
             <span>➮</span>
-            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/projects/bodyLanguageCollaborativeCollage')}>Body Language: A Collaborative Collage</p>
+            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/projects/virtualLittleFreeLibrary')}>Virtual Little Free Library</p>
           </div>
         </CollapsibleSidebarItem>
 
@@ -35,13 +35,22 @@ function Sidebar({ selectSidebarOption }) {
           </div>
         </CollapsibleSidebarItem>
 
+        {/* BIOINFORMATICS */}
         <CollapsibleSidebarItem label="Bioinformatics">
+          <div style={{ display: "flex" }}>
+            <span>➮</span>
+            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/bioinformatics/autoTrinity')}>AutoTrinity (Transcriptome assembly pipeline)</p>
+          </div>
         </CollapsibleSidebarItem>
 
         <CollapsibleSidebarItem label="Music">
         </CollapsibleSidebarItem>
 
         <CollapsibleSidebarItem label="About">
+          <div style={{ display: "flex" }}>
+            <span>➮</span>
+            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/about/bio')}>Bio</p>
+          </div>
         </CollapsibleSidebarItem>
       </div>
     </div>

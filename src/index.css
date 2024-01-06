@@ -37,3 +37,37 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
   text-align: left
 };
+
+/* App.js */
+
+.App {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  flex: 0 0 25%; /* Do not grow or shrink, occupy 25% width */
+}
+
+.main-content {
+  flex-grow: 1; /* Grow to fill available space */
+}
+
+.whats-going-on {
+  flex: 0 0 20%; /* Do not grow or shrink, occupy 20% width */
+}
+
+@media (max-width: 992px) {
+  .whats-going-on {
+    display: none; /* Hide on smaller screens */
+  }
+
+  .sidebar {
+    flex: 0 0 25%; /* Occupy more space when "What's Going On?" is hidden */
+  }
+
+  .main-content {
+    flex: 0 0 75%; /* Occupy more space when "What's Going On?" is hidden */
+  }
+}
+
