@@ -189,7 +189,7 @@ function FileDepolarizer() {
     return (
         // Spread syntax allows all the properties and event handlers brought in by the getRootProps() function
         // to be assigned all at once, instead of setting onClick=, onDragEnter=, onDragOver=.... and so on
-        <div>
+        <div style={{padding: "20px"}}>
             <div {...getRootProps()} style={dynamicDropzoneStyle}>
                 <input {...getInputProps()} />
                 {

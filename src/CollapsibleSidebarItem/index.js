@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const CollapsibleSidebarItem = ({ label, children }) => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     const toggleOpen = () => setOpen(!open);
 
@@ -28,7 +28,7 @@ const CollapsibleSidebarItem = ({ label, children }) => {
               onMouseEnter={(e) => e.target.style.textDecoration = hoverStyle.textDecoration}
               onMouseLeave={(e) => e.target.style.textDecoration = labelStyle.textDecoration}
             >
-                {label}{open ? " ⇱" : " ⇲"}
+                <p>{label}{open ? " ⇱" : " ⇲"}</p>
             </div>
             {open && <div className="toggle" style={innerStyle}>{children}</div>}
         </div>

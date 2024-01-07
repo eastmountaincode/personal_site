@@ -4,7 +4,7 @@ import DnaImage from '../images/dna.png';
 
 function DefaultHomeContent() {
     return (
-        <div>
+        <div style={{padding: "10px"}}>
             <img src={DnaImage} alt="DNA" style={{height: "400px"}}/>
         </div>
     );

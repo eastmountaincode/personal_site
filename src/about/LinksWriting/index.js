@@ -8,16 +8,19 @@ function LinksWriting() {
 
             <ul style={{textAlign: "left"}}>
                 <li>
-                    <a href="https://everest-pipkin.com/">https://everest-pipkin.com/</a> - Inspiration and pathways to many things
+                    <a href="https://everest-pipkin.com/" target="_blank" rel="noopener noreferrer">https://everest-pipkin.com/</a> - Inspiration and pathways to many things
                 </li>
                 <li>
-                    <a href="https://blog.glyphdrawing.club/">https://blog.glyphdrawing.club/</a> - ASCII drawing tool
+                    <a href="https://blog.glyphdrawing.club/" target="_blank" rel="noopener noreferrer">https://blog.glyphdrawing.club/</a> - ASCII drawing tool
                 </li>
                 <li>
-                    <a href="https://travle.earth/">https://travle.earth/</a> - Geography game
+                    <a href="https://travle.earth/" target="_blank" rel="noopener noreferrer">https://travle.earth/</a> - Geography game
                 </li>
                 <li>
-                    <a href="https://geohazards.earth.utah.edu/tones/redrocktones.html">https://geohazards.earth.utah.edu/tones/redrocktones.html</a> - "Measurements of ambient seismic vibration sped up 25X made audible"
+                    <a href="https://geohazards.earth.utah.edu/tones/redrocktones.html" target="_blank" rel="noopener noreferrer">https://geohazards.earth.utah.edu/tones/redrocktones.html</a> - "Measurements of ambient seismic vibration sped up 25X made audible"
+                </li>
+                <li>
+                    <a href="https://github.com/public-apis/public-apis" target="_blank" rel="noopener noreferrer">https://github.com/public-apis/public-apis</a> - Public list of free APIs
                 </li>
             </ul>
         </div>

@@ -1,9 +1,10 @@
 import React from 'react';
+import RandomArtwork from './RandomArtwork';
 
 function WhatsGoingOn() {
   return (
     <div className="whats-going-on">
-      <p>Some static content or updates here...</p>
+      <RandomArtwork />
     </div>
   );
 }

@@ -10,7 +10,7 @@ function Sidebar({ selectSidebarOption }) {
   };
 
   return (
-    <div className="sidebar" style={{ textAlign: "left" }}>
+    <div className="sidebar" style={{ textAlign: "left", padding: "10px" }}>
       <div className='name_header'>
         <p className="sidebar-link-header" onClick={() => handleSidebarItemClick('/')}>Andrew Boylan</p>
       </div>

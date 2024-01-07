@@ -15,15 +15,15 @@ import LinksWriting from './about/LinksWriting';
 function App() {
   return (
     <Router>
-      <div className="App" style={{ display: "flex", height: "100vh" }}>
+      <div className="App" style={{ display: "flex", height: "100vh", backgroundColor: "whitesmoke" }}>
 
         {/* SIDEBAR */}
-        <div className="sidebar" style={{ border: "1px solid red" }}>
+        <div className="sidebar" style={{}}>
           <Sidebar />
         </div>
 
         {/* MAIN CONTENT */}
-        <div className="main-content" style={{ border: "1px solid red" }}>
+        <div className="main-content" style={{}}>
           <Routes>
             <Route path="/" element={<DefaultHomeContent />} />
             <Route path="/projects/virtualLittleFreeLibrary" element={<FreeLittleLibraryWriting />} />
@@ -37,7 +37,7 @@ function App() {
         </div>
 
         {/* WHAT'S GOING ON? */}
-        <div className="whats-going-on" style={{ border: "1px solid red" }}>
+        <div className="whats-going-on" style={{}}>
           <WhatsGoingOn />
         </div>
       </div>

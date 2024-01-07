@@ -12,6 +12,10 @@ p, div {
   padding: 0; /* Removes default padding */
 }
 
+p {
+  font-size: 15px;
+}
+
 /* For headings: */
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -64,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .whats-going-on {
   position: fixed; /* Fixed position */
-  width: 20%; /* Width of the section */
+  width: 18%; /* Width of the section */
   right: 0; /* Align to the right */
   top: 0; /* Align to the top */
   bottom: 0; /* Stretch to the bottom */
