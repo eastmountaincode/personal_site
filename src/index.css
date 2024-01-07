@@ -43,18 +43,32 @@ h1, h2, h3, h4, h5, h6 {
 .App {
   display: flex;
   height: 100vh;
+  width: 100vw; /* Ensure full viewport width */
+  overflow: hidden; /* Hide overflow */
 }
 
 .sidebar {
-  flex: 0 0 25%; /* Do not grow or shrink, occupy 25% width */
+  position: fixed; /* Fixed position */
+  width: 25%; /* Width of the sidebar */
+  left: 0; /* Align to the left */
+  top: 0; /* Align to the top */
+  bottom: 0; /* Stretch to the bottom */
+  overflow-y: auto; /* Scroll if content overflows */
 }
 
 .main-content {
-  flex-grow: 1; /* Grow to fill available space */
+  margin-left: 25%; /* Shift to the right to avoid overlapping with sidebar */
+  width: 55%; /* Adjust the width to fit between sidebar and "What's Going On?" */
+  overflow-y: auto; /* Enable scrolling for main content */
 }
 
 .whats-going-on {
-  flex: 0 0 20%; /* Do not grow or shrink, occupy 20% width */
+  position: fixed; /* Fixed position */
+  width: 20%; /* Width of the section */
+  right: 0; /* Align to the right */
+  top: 0; /* Align to the top */
+  bottom: 0; /* Stretch to the bottom */
+  overflow-y: auto; /* Scroll if content overflows */
 }
 
 @media (max-width: 992px) {
@@ -63,11 +77,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .sidebar {
-    flex: 0 0 25%; /* Occupy more space when "What's Going On?" is hidden */
+    width: 25%;
   }
 
   .main-content {
-    flex: 0 0 75%; /* Occupy more space when "What's Going On?" is hidden */
+    margin-left: 25%;
+    width: 75%; /* Adjust the width for smaller screens */
   }
 }
+
 

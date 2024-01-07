@@ -43,16 +43,21 @@ function Sidebar({ selectSidebarOption }) {
           </div>
         </CollapsibleSidebarItem>
 
-        <CollapsibleSidebarItem label="Music">
-        </CollapsibleSidebarItem>
-
+        {/* ABOUT */}
         <CollapsibleSidebarItem label="About">
           <div style={{ display: "flex" }}>
             <span>➮</span>
             <p className="sidebar-link" onClick={() => handleSidebarItemClick('/about/bio')}>Bio</p>
           </div>
+          <div style={{ display: "flex" }}>
+            <span>➮</span>
+            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/about/links')}>Links</p>
+          </div>
         </CollapsibleSidebarItem>
+
       </div>
+
+
     </div>
   );
 }

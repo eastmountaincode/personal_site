@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const CollapsibleSidebarItem = ({ label, children }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     const toggleOpen = () => setOpen(!open);
 

@@ -10,6 +10,7 @@ import FileDepolarizer from './resources_tools/FileDepolarizer';
 import DefaultHomeContent from './DefaultHomeContent'
 import AutoTrinityWriting from './bioinformatics/AutoTrinityWriting';
 import BioWriting from './about/BioWriting';
+import LinksWriting from './about/LinksWriting';
 
 function App() {
   return (
@@ -24,12 +25,13 @@ function App() {
         {/* MAIN CONTENT */}
         <div className="main-content" style={{ border: "1px solid red" }}>
           <Routes>
-          <Route path="/" element={<DefaultHomeContent />} />
+            <Route path="/" element={<DefaultHomeContent />} />
             <Route path="/projects/virtualLittleFreeLibrary" element={<FreeLittleLibraryWriting />} />
             <Route path="/projects/bodyLanguageCollaborativeCollage" element={<BodyLangCollageWriting />} />
             <Route path="/resources_tools/fileDepolarizer" element={<FileDepolarizer />} />
             <Route path="/bioinformatics/autoTrinity" element={<AutoTrinityWriting />} />
             <Route path="/about/bio" element={<BioWriting />} />
+            <Route path="/about/links" element={<LinksWriting />} />
 
           </Routes>
         </div>
