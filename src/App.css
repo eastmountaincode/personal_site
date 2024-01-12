@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  height: 100vh;
+  overflow-x: hidden;
+
 }
 
 .App-logo {
@@ -36,3 +39,120 @@
     transform: rotate(360deg);
   }
 }
+
+/* ################################# */
+
+.linkStyleBreak {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+
+
+.sidebar-link {
+  position: relative;
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  margin-left: 20px;
+}
+
+.sidebar-link-header {
+  position: relative;
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.paragraphSection {
+  margin-bottom: 20px;
+  text-align: left
+};
+
+
+.App {
+  display: flex;
+  height: 100vh;
+  width: 100vw; /* Ensure full viewport width */
+  overflow: hidden; /* Hide overflow */
+}
+
+.sidebar {
+  position: fixed; /* Fixed position */
+  width: 25%; /* Width of the sidebar */
+  left: 0; /* Align to the left */
+  top: 0; /* Align to the top */
+  bottom: 0; /* Stretch to the bottom */
+  overflow-y: auto; /* Scroll if content overflows */
+  border-right: 0.5px black solid;
+
+}
+
+.main-content {
+  margin-left: 25%; /* Shift to the right to avoid overlapping with sidebar */
+  width: 55%; /* Adjust the width to fit between sidebar and "What's Going On?" */
+  overflow-y: auto; /* Enable scrolling for main content */
+}
+
+.whats-going-on {
+  position: fixed; /* Fixed position */
+  width: 18%; /* Width of the section */
+  right: 0; /* Align to the right */
+  top: 0; /* Align to the top */
+  bottom: 0; /* Stretch to the bottom */
+  overflow-y: auto; /* Scroll if content overflows */
+  border-left: 0.5px black solid;
+
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 992px) {
+  .whats-going-on {
+    display: none; /* Hide on smaller screens */
+  }
+
+  .sidebar {
+    width: 25%;
+  }
+
+  .main-content {
+    margin-left: 25%;
+    width: 75%; /* Adjust the width for smaller screens */
+  }
+}
+
+/* Media Query for MOBILE */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative; /* Instead of fixed */
+    width: 100%;
+    height: auto;
+    top: unset;
+    bottom: unset;
+    overflow-y: visible;
+    border-right: none;
+    border-bottom: 0.5px black solid;
+
+
+    /* border-bottom: 0.5px solid #000; */
+
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .whats-going-on {
+    display: none;
+  }
+}
+
+
+
+
+

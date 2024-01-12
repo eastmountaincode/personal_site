@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const CollapsibleSidebarItem = ({ label, children }) => {
+const CollapsibleSidebarItem = ({ label, children, openStateSignal, triggerSignal }) => {
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        if (open && !openStateSignal) {
+            setOpen(false)
+        }
+        else if (!open && openStateSignal) {
+            setOpen(true)
+        }
+    }, [triggerSignal]);
 
     const toggleOpen = () => setOpen(!open);
 

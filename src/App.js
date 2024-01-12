@@ -12,13 +12,15 @@ import AutoTrinityWriting from './bioinformatics/AutoTrinityWriting';
 import BioWriting from './about/BioWriting';
 import LinksWriting from './about/LinksWriting';
 
+import { useState } from 'react';
+
 function App() {
   return (
     <Router>
-      <div className="App" style={{ display: "flex", height: "100vh", backgroundColor: "whitesmoke" }}>
+      <div className="App" style={{ backgroundColor: "whitesmoke" }}>
 
         {/* SIDEBAR */}
-        <div className="sidebar" style={{}}>
+        <div className={`sidebar`}>
           <Sidebar />
         </div>
 
