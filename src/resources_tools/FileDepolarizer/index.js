@@ -21,7 +21,7 @@ function FileDepolarizer() {
 
     // Establish WebSocket and listeners
     useEffect(() => {
-        socket = io('http://localhost:5001')
+        socket = io('http://10.0.0.57:5001');
 
         socket.on('processing_error', error => {
             setTerminalOutput(oldOutput => [...oldOutput, `Processing Error: ${error.error}`]);
