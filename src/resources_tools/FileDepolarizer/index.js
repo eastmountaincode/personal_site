@@ -195,7 +195,7 @@ function FileDepolarizer() {
                 {
                     selectedFile ? (
                         <div>
-                            <span>{selectedFile.name}</span>
+                            <span style={{color: "black"}}>{selectedFile.name}</span>
                             <button onClick={clearSelectionWithXButton} style={clearButtonStyle}>X</button>
                             <button onClick={handleUpload}>Upload</button>
                         </div>
@@ -216,11 +216,11 @@ function FileDepolarizer() {
 }
 
 const dropzoneStyle = {
-    border: '2px dashed #007bff',
+    border: '2px dashed #b5b5b5',
     borderRadius: '5px',
     padding: '20px',
     textAlign: 'center',
-    color: '#007bff',
+    // color: '#b5b5b5',
     transition: 'border .3s ease-in-out',
 };
 
@@ -231,6 +231,7 @@ const selectedFileStyle = {
 
 const clearButtonStyle = {
     marginLeft: '10px',
+    marginRight: '10px',
     cursor: 'pointer',
     color: '#ff4d4d',
     border: 'none',
@@ -249,6 +250,7 @@ const terminalStyle = {
     minWidth: '370px',
     minHeight: '215px'
 };
+
 
 export default FileDepolarizer;
 
