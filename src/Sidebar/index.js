@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CollapsibleSidebarItem from '../CollapsibleSidebarItem';
 import "./sidebar_style.css"
 
 function Sidebar({}) {
-  let navigate = useNavigate();
-
-  const handleSidebarItemClick = (itemRoute) => {
-    navigate(`${itemRoute}`);
-  };
-
   const [openStateSignal, setOpenStateSignal] = useState(false);
   const [triggerSignal, setTriggerSignal] = useState(0); // New state
-
 
   const expandAll = () => {
     setOpenStateSignal(true);
@@ -28,7 +21,7 @@ function Sidebar({}) {
     <div style={{ textAlign: "left", padding: "10px" }}>
 
       <div className='name_header'>
-        <p className="sidebar-link-header" onClick={() => handleSidebarItemClick('/')}>Andrew Boylan</p>
+        <Link to='/' className="sidebar-link-header">Andrew Boylan</Link>
       </div>
       
       <div className='sidebar_elements'>
@@ -36,11 +29,11 @@ function Sidebar({}) {
         <CollapsibleSidebarItem label="Projects" openStateSignal={openStateSignal} triggerSignal={triggerSignal}>
           <div style={{ display: "flex" }}>
             <span>➮</span>
-            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/projects/bodyLanguageCollaborativeCollage')}>Body Language: A Collaborative Collage</p>
+            <Link to='/projects/bodyLanguageCollaborativeCollage' className="sidebar-link">Body Language: A Collaborative Collage</Link>
           </div>
           <div style={{ display: "flex" }}>
             <span>➮</span>
-            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/projects/virtualLittleFreeLibrary')}>Virtual Little Free Library</p>
+            <Link to='/projects/virtualLittleFreeLibrary' className="sidebar-link">Virtual Little Free Library</Link>
           </div>
         </CollapsibleSidebarItem>
 
@@ -48,7 +41,7 @@ function Sidebar({}) {
         <CollapsibleSidebarItem label="Resources / Tools" openStateSignal={openStateSignal} triggerSignal={triggerSignal}>
           <div style={{ display: "flex" }}>
             <span>➮</span>
-            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/resources_tools/fileDepolarizer')}>File Depolarizer</p>
+            <Link to='/resources_tools/fileDepolarizer' className="sidebar-link">File Depolarizer</Link>
           </div>
         </CollapsibleSidebarItem>
 
@@ -56,7 +49,7 @@ function Sidebar({}) {
         <CollapsibleSidebarItem label="Bioinformatics" openStateSignal={openStateSignal} triggerSignal={triggerSignal}>
           <div style={{ display: "flex" }}>
             <span>➮</span>
-            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/bioinformatics/autoTrinity')}>AutoTrinity (Transcriptome assembly pipeline)</p>
+            <Link to='/bioinformatics/autoTrinity' className="sidebar-link">AutoTrinity (Transcriptome assembly pipeline)</Link>
           </div>
         </CollapsibleSidebarItem>
 
@@ -64,11 +57,11 @@ function Sidebar({}) {
         <CollapsibleSidebarItem label="About" openStateSignal={openStateSignal} triggerSignal={triggerSignal}>
           <div style={{ display: "flex" }}>
             <span>➮</span>
-            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/about/bio')}>Bio</p>
+            <Link to='/about/bio' className="sidebar-link">Bio</Link>
           </div>
           <div style={{ display: "flex" }}>
             <span>➮</span>
-            <p className="sidebar-link" onClick={() => handleSidebarItemClick('/about/links')}>Links</p>
+            <Link to='/about/links' className="sidebar-link">Links</Link>
           </div>
         </CollapsibleSidebarItem>
 
@@ -83,10 +76,8 @@ function Sidebar({}) {
         <button onClick={collapseAll}>Collapse All</button>
       </div>
 
-
     </div>
   );
 }
 
 export default Sidebar;
-

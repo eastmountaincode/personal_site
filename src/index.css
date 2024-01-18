@@ -21,3 +21,25 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: slategray;
+  color: white /* text color white */
+}
+
+/* Regular link color for sidebar links */
+a {
+  color: rgb(197, 255, 237);
+  /* Or any light color that is visible on dark background */
+  text-decoration: none;
+  /* Optional: removes underline */
+}
+
+/* Hover and active states for better user experience for sidebar links */
+a:hover,
+a:active {
+    text-decoration: underline;
+}

@@ -17,7 +17,7 @@ import { useState } from 'react';
 function App() {
   return (
     <Router>
-      <div className="App" style={{ backgroundColor: "whitesmoke" }}>
+      <div className="App">
 
         {/* SIDEBAR */}
         <div className={`sidebar`}>
