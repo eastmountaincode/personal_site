@@ -119,7 +119,7 @@ function FileDepolarizer() {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        const url = 'http://localhost:5001/upload';
+        const url = 'https://api.andrew-boylan.com/upload';
 
         setTerminalOutput(oldOutput => [...oldOutput, `Uploading file: ${selectedFile.name}`])
         setTerminalOutput(oldOutput => [...oldOutput, renderProgressBar(0)]);
