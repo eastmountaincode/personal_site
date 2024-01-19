@@ -21,7 +21,7 @@ function FileDepolarizer() {
 
     // Establish WebSocket and listeners
     useEffect(() => {
-        socket = io('https://71.232.161.255:5001');
+        socket = io('https://api.andrew-boylan.com');
 
         socket.on('processing_error', error => {
             setTerminalOutput(oldOutput => [...oldOutput, `Processing Error: ${error.error}`]);
